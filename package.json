@@ -1,0 +1,9 @@
+{
+  "name": "zenkaikon26",
+  "author": "superlou <lousimons@gmail.com>",
+  "desc": "Digital signage for Zenkaikon 2026",
+  "platforms": [
+    "pi/epoch-1",
+    "pi/epoch-2"
+  ]
+}
