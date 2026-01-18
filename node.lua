@@ -17,7 +17,6 @@ local sidebar_bg = resource.load_image "img_sidebar_bg.png"
 local main_bg = resource.load_image "img_main_bg3.png"
 local inset_bg = resource.load_image "img_inset_bg.png"
 local get_guidebook = resource.load_image "img_get_guidebook.png"
-local flags = resource.load_image "img_flags.png"
 local ticker_bg = resource.load_image "img_ticker_bg.png"
 local ticker_left_crop = resource.load_image "img_ticker_left_crop.png"
 local ticker_right_crop = resource.load_image "img_ticker_right_crop.png"
@@ -63,33 +62,27 @@ function node.render()
 
     sidebar_bg:draw(1280, 0, 1280 + 640, 946)
 
-    offset(1280, 0, function()
+    offset(0, 0, function()
         topic_sidebar:draw()
     end)
 
-    -- main_bg:draw(0, 0, 1280, 964)
+    main_bg:draw(640, 0, 1920, 964)
 
-    offset(0, 0, function()
+    offset(640, 0, function()
         topic_main:draw()
     end)
-
-    draw_image_xywh(flags, 0, -3, 1921, 62)
 
     draw_image_xywh(ticker_bg, 0, 964, 1920, 116)
     ticker:draw()
     draw_image_xywh(ticker_left_crop, 0, 964, 239, 116)
 
-    draw_image_xywh(get_guidebook, 1287, 730, 190, 209)
+    draw_image_xywh(get_guidebook, 440, 730, 190, 209)
 
-    offset(1444, 729, function() 
-        offset(56, 11, function()
-            topic_inset:draw()
-        end)
-        -- It's actually an overlay
-        inset_bg:draw(0, 0, 476, 351)
+    offset(20, 740, function()
+        topic_inset:draw()
     end)
 
-    offset(15, 972, function()
+    offset(1710, 972, function()
         clock:draw()
     end)
 
