@@ -1,4 +1,5 @@
 gl.setup(1920, 1080)
+require "open_source_patch"
 -- require("test_runner")()
 local Heading = require "heading"
 require "color_util"

@@ -2,7 +2,7 @@ local class = require "middleclass"
 
 local Topic = class("Topic")
 
-local mask_shader = resource.create_shader[[
+local mask_shader = resource.create_shader [[
     uniform sampler2D mask;
     uniform sampler2D Texture;
     uniform float alpha;
@@ -36,8 +36,8 @@ function Topic:next_topic_has_bg()
         return false
     end
 
-    return next_topic_config.media.filename ~= "img_no_media.png" 
-           and next_topic_config.media.asset_name
+    return next_topic_config.media.filename ~= "img_no_media.png"
+        and next_topic_config.media.asset_name
 end
 
 function Topic:set_done()
@@ -60,10 +60,17 @@ function Topic:is_done()
     return self.lifecycle == Lifecycle.DONE
 end
 
-
 function Topic:use_background_media(media, mask_filename)
-    if media.filename ~= "img_no_media.png" and media.asset_name then
+    local filename = string.lower(media.filename)
+    local media_is_image = (
+        string_ends_with(filename, ".png") or string_ends_with(filename, ".png")
+    )
+    local media_is_video = string_ends_with(filename, ".mp4")
+
+    if media.filename ~= "img_no_media.png" and media_is_image then
         self.background = resource.load_image(media.asset_name)
+    elseif media.filename ~= "img_no_media.png" and media_is_video then
+        self.background = resource.load_video { file = media.asset_name }
     end
 
     if mask_filename then
@@ -74,7 +81,7 @@ end
 function Topic:draw_background_media(alpha)
     if self.background then
         if self.mask then
-            mask_shader:use {mask = self.mask, alpha = alpha}
+            mask_shader:use { mask = self.mask, alpha = alpha }
         end
         self.background:draw(0, 0, self.w, self.h, alpha)
         if self.mask then
