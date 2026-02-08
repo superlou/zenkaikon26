@@ -7,7 +7,7 @@ local TickerMsg = class("TickerMsg")
 local font = resource.load_font "font_QuattrocentoSans-Regular.ttf"
 local separator = resource.load_image("img_separator.png")
 local msg_y_offset = 32
-local text_color = {hex2rgb("#073b98")}
+local text_color = { hex2rgb("#ffffff") }
 
 function Ticker:initialize()
 end
@@ -58,7 +58,7 @@ function Ticker:draw()
             self.msgs[self.next_msg_id],
             self:last_msg_end_x(), self.y + msg_y_offset, self.font, 48
         )
-    
+
         self.next_msg_id = self.next_msg_id + 1
         if self.next_msg_id > #self.msgs then self.next_msg_id = 1 end
     end

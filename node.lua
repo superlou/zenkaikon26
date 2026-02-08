@@ -16,6 +16,7 @@ local ServiceIndicator = require "service_indicator"
 local sidebar_bg = resource.load_image "img_sidebar_bg.png"
 local main_bg = resource.load_image "img_main_bg3.png"
 local inset_bg = resource.load_image "img_inset_bg.png"
+local inset_overlay = resource.load_image "img_inset_overlay.png"
 local get_guidebook = resource.load_image "img_get_guidebook.png"
 local ticker_bg = resource.load_image "img_ticker_bg.png"
 local ticker_left_crop = resource.load_image "img_ticker_left_crop.png"
@@ -36,11 +37,11 @@ util.data_mapper {
     ["clock/update"] = function(data)
         data = json.decode(data)
         clock:update(data.hh_mm, data.am_pm, data.month, data.date)
-    end;
+    end,
     ["guidebook/update"] = function(data)
         data = json.decode(data)
         service_indicator:update(data.updating, data.checks, data.desc)
-    end;
+    end,
 }
 
 json_watch("config.json", function(config)
@@ -74,13 +75,16 @@ function node.render()
 
     draw_image_xywh(ticker_bg, 0, 964, 1920, 116)
     ticker:draw()
-    draw_image_xywh(ticker_left_crop, 0, 964, 239, 116)
+    draw_image_xywh(ticker_left_crop, 0, 964, 470, 116)
+    draw_image_xywh(ticker_right_crop, 1673, 964, 247, 116)
 
     draw_image_xywh(get_guidebook, 440, 730, 190, 209)
 
+    draw_image_xywh(inset_bg, 10, 730, 420, 324)
     offset(20, 740, function()
         topic_inset:draw()
     end)
+    draw_image_xywh(inset_overlay, 30, 711, 436, 367)
 
     offset(1710, 972, function()
         clock:draw()
