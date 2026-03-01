@@ -34,7 +34,7 @@ local main_style = {
         text_color = "f0f4f5",
         font_size = 48,
         padding = 50,
-        bg_color = "2b364c",
+        bg_color = "700010",
         shadow_color = "f0f4f5",
     },
     text = {
