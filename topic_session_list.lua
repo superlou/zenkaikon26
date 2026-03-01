@@ -20,7 +20,7 @@ function SessionListTopic:initialize(player, w, h, style, duration, heading, tex
     Topic.initialize(self, player, w, h, style, duration)
     self.heading = heading
     self.text = text
-    self.text_color = {hex2rgb(self.style.text.color)}
+    self.text_color = { hex2rgb(self.style.text.color) }
     self.font_size = 36
 
     self:use_background_media(media, style.player_bg_mask)
@@ -28,7 +28,7 @@ function SessionListTopic:initialize(player, w, h, style, duration, heading, tex
     tw:tween(self, "alpha", 0, 1, 0.5)
 
     self.heading = Heading(heading, style.heading)
-    
+
     local data_filename = text:match("data:([%w_.]+)")
     local session_data_text = file_load_safe(data_filename, "[]")
     self.sessions_data = json.decode(session_data_text)
@@ -38,12 +38,12 @@ function SessionListTopic:initialize(player, w, h, style, duration, heading, tex
 
     self.items_start_y = 140
     self.item_h = 94
-    self.item_gap = 20
+    self.item_gap = 18
 
     local items_space = self.h - self.items_start_y - self.style.padding[3]
     self.sessions_per_page = math.floor(items_space / (self.item_h + self.item_gap))
     self.sessions_by_page = split_every_n(self.sessions_data, self.sessions_per_page)
-    self.session_items = {}     -- the session drawing objects
+    self.session_items = {} -- the session drawing objects
 
     if #self.sessions_by_page == 0 then
         -- If nothing to show, wait for 1 page duration
@@ -131,8 +131,8 @@ function SessionListTopic:draw()
     end
 end
 
-function SessionListItem:initialize(name, locations, start_hhmm, start_ampm, 
-    completed_fraction, w, h, duration, enter_delay, style
+function SessionListItem:initialize(name, locations, start_hhmm, start_ampm,
+                                    completed_fraction, w, h, duration, enter_delay, style
 )
     self.name = name
     self.locations = locations
@@ -150,7 +150,7 @@ function SessionListItem:initialize(name, locations, start_hhmm, start_ampm,
         self.locations[i] = string.upper(location)
     end
 
-    self.text_color = {hex2rgb(self.style.text.color)}
+    self.text_color = { hex2rgb(self.style.text.color) }
     self.font_size = 40
     self.font = self.style.text.font
     self.font_bold = self.style.text.font_bold
@@ -187,7 +187,7 @@ function SessionListItem:draw_normal()
         self.bg_img:draw(
             self.padding[2] / 2, -12,
             self.w - self.padding[4] / 2, -12 + self.h,
-        self.alpha)
+            self.alpha)
     end
 
     local r, g, b = unpack(self.text_color)
@@ -243,7 +243,7 @@ function SessionListItem:draw_compact()
         self.bg_img:draw(
             self.padding[2] / 2, -12,
             self.w - self.padding[4] / 2, -12 + self.h,
-        self.alpha)
+            self.alpha)
     end
 
     local r, g, b = unpack(self.text_color)
@@ -272,6 +272,5 @@ function SessionListItem:draw_compact()
         )
     end
 end
-
 
 return SessionListTopic

@@ -15,12 +15,12 @@ local tw = require "tween"
 local ServiceIndicator = require "service_indicator"
 
 local sidebar_bg = resource.load_image "img_sidebar_bg.png"
-local main_bg = resource.load_image "img_main_bg3.png"
+local main_bg = resource.load_image "img_main_bg.png"
 local inset_bg = resource.load_image "img_inset_bg.png"
 local inset_overlay = resource.load_image "img_inset_overlay.png"
 local get_guidebook = resource.load_image "img_get_guidebook.png"
 local ticker_bg = resource.load_image "img_ticker_bg.png"
-local ticker_left_crop = resource.load_image "img_ticker_left_crop.png"
+local ticker_left_crop = resource.load_image "img_ticker_left_crop_qr.png"
 local ticker_right_crop = resource.load_image "img_ticker_right_crop.png"
 local ticker_right_triangle = resource.load_image "img_ticker_right_triangle.png"
 
@@ -30,9 +30,9 @@ local clock = Clock:new(200, 96)
 local service_indicator = ServiceIndicator()
 
 local style = require "style"
-local topic_sidebar = TopicPlayer(640, 964, style["sidebar_style"])
+local topic_sidebar = TopicPlayer(640, 484, style["sidebar_style"])
 local topic_main = TopicPlayer(1280, 964, style["main_style"])
-local topic_inset = TopicPlayer(400, 300, style["inset_style"])
+local topic_inset = TopicPlayer(640, 480, style["inset_style"])
 
 util.data_mapper {
     ["clock/update"] = function(data)
@@ -76,16 +76,12 @@ function node.render()
 
     draw_image_xywh(ticker_bg, 0, 964, 1920, 116)
     ticker:draw()
-    draw_image_xywh(ticker_left_crop, 0, 964, 470, 116)
+    draw_image_xywh(ticker_left_crop, 0, 964, 161, 116)
     draw_image_xywh(ticker_right_crop, 1673, 964, 247, 116)
 
-    draw_image_xywh(get_guidebook, 440, 730, 190, 209)
-
-    draw_image_xywh(inset_bg, 10, 730, 420, 324)
-    offset(20, 740, function()
+    offset(0, 484, function()
         topic_inset:draw()
     end)
-    draw_image_xywh(inset_overlay, 30, 711, 436, 367)
 
     offset(1710, 972, function()
         clock:draw()

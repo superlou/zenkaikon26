@@ -15,7 +15,7 @@ function SessionBriefTopic:initialize(player, w, h, style, duration, heading, te
     Topic.initialize(self, player, w, h, style, duration)
     self.heading = heading
     self.text = text
-    self.text_color = {hex2rgb(self.style.text.color)}
+    self.text_color = { hex2rgb(self.style.text.color) }
     self.font_size = 40
 
     self:use_background_media(media, style.player_bg_mask)
@@ -23,7 +23,7 @@ function SessionBriefTopic:initialize(player, w, h, style, duration, heading, te
     tw:tween(self, "alpha", 0, 1, 0.5)
 
     self.heading = Heading(heading, style.heading)
-    
+
     local data_filename = text:match("data:([%w_.]+)")
     local session_data_text = file_load_safe(data_filename, "[]")
     self.sessions_data = json.decode(session_data_text)
@@ -31,14 +31,14 @@ function SessionBriefTopic:initialize(player, w, h, style, duration, heading, te
     local filters = extract_session_filters_from_config(text)
     sessions_filter(self.sessions_data, filters)
 
-    self.items_start_y = 140
-    self.item_h = 84
-    self.item_gap = 30
+    self.items_start_y = 128
+    self.item_h = 94
+    self.item_gap = 18
 
     local items_space = self.h - self.items_start_y - self.style.padding[3]
     self.sessions_per_page = math.floor(items_space / (self.item_h + self.item_gap))
     self.sessions_by_page = split_every_n(self.sessions_data, self.sessions_per_page)
-    self.session_items = {}     -- the session drawing objects
+    self.session_items = {} -- the session drawing objects
 
     if #self.sessions_by_page == 0 then
         -- If nothing to show, wait for 1 page duration
@@ -66,7 +66,7 @@ end
 function SessionBriefTopic:load_page()
     local sessions = table.remove(self.sessions_by_page, 1)
     self.session_items = {}
-    
+
     for i, session in ipairs(sessions) do
         local item = SessionBriefItem:new(
             session.name, session.locations,
@@ -115,7 +115,8 @@ function SessionBriefTopic:draw()
     end)
 
     for i, session_item in ipairs(self.session_items) do
-        offset(0, self.items_start_y + (i - 1) * (self.item_h + self.item_gap), function()
+        local item_y = self.items_start_y + (i - 1) * (self.item_h + self.item_gap)
+        offset(0, item_y, function()
             session_item:draw()
         end)
     end
@@ -129,10 +130,10 @@ function SessionBriefTopic:draw()
 end
 
 function SessionBriefItem:initialize(name, locations,
-        start_hhmm, start_ampm,
-        finish_hhmm, finish_ampm,
-        is_before_start, is_open, is_after_finish,
-        w, h, duration, enter_delay, style
+                                     start_hhmm, start_ampm,
+                                     finish_hhmm, finish_ampm,
+                                     is_before_start, is_open, is_after_finish,
+                                     w, h, duration, enter_delay, style
 )
     self.name = name
     self.locations = locations
@@ -165,7 +166,7 @@ function SessionBriefItem:initialize(name, locations,
         self.status2 = " "
     end
 
-    self.text_color = {hex2rgb(self.style.text.color)}
+    self.text_color = { hex2rgb(self.style.text.color) }
     self.font_size = 42
     self.font = self.style.text.font
 
@@ -182,9 +183,9 @@ function SessionBriefItem:initialize(name, locations,
     end)
 end
 
-local until_color = {hex2rgb("#2fc480")}
-local opens_color = {hex2rgb("#d9b630")}
-local closed_color = {hex2rgb("#d34848")}
+local until_color = { hex2rgb("#2fc480") }
+local opens_color = { hex2rgb("#d9b630") }
+local closed_color = { hex2rgb("#d34848") }
 
 local img_until = resource.load_image("img_until_dark.png")
 local img_closed = resource.load_image("img_ended_dark.png")
@@ -195,11 +196,11 @@ function SessionBriefItem:draw()
     local r, g, b = unpack(self.text_color)
 
     if self.bg_img then
-        self.bg_img:draw(20, -10, self.w - 20, 0 + self.h, self.alpha)
+        self.bg_img:draw(20, 0, self.w - 20, self.h, self.alpha)
     end
 
     local status_img = img_none
-    local status_color = {1, 1, 1}
+    local status_color = { 1, 1, 1 }
 
     if self.status1 == "opens" then
         status_img = img_opens
@@ -211,23 +212,23 @@ function SessionBriefItem:draw()
         status_img = img_closed
         status_color = closed_color
     end
-    
-    status_img:draw(490, 13, 490 + 82, 13 + 25, self.alpha)
+
+    status_img:draw(510, 18, 510 + 82, 18 + 25, self.alpha)
     write_centered(
-        self.font, 490 + 41, 50, self.status2, self.font_size * 0.5,
+        self.font, 510 + 41, 60, self.status2, self.font_size * 0.5,
         status_color[1], status_color[2], status_color[3], self.alpha
     )
 
     draw_text_in_window(
         self.name,
-        40, 0, 435,
+        40, 10, 435,
         self.font_size, self.font_size, self.font,
         r, g, b, self.alpha, 0
     )
 
     if #self.locations > 0 then
         self.font:write(
-            40, 50, self.locations[1], self.font_size * 0.5,
+            40, 60, self.locations[1], self.font_size * 0.5,
             r, g, b, self.alpha
         )
     end

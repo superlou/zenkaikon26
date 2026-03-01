@@ -3,16 +3,13 @@ local font_hdg_bold = resource.load_font "font_Poppins-BlackItalic.ttf"
 local font_body = resource.load_font "font_QuattrocentoSans-Regular.ttf"
 local font_body_bold = resource.load_font "font_QuattrocentoSans-Bold.ttf"
 
-local COLOR_OTAKON_PRIMARY = "0070ce"
-local COLOR_OTAKON_AFFAIR = "8253a2"
-
 local sidebar_style = {
     heading = {
         style = "underline",
         font = font_hdg,
         font_size = 48,
-        text_color = "d03946",
-        shadow_color = "d03946",
+        text_color = "700010",
+        shadow_color = "700010",
         padding = 50,
     },
     text = {
@@ -20,13 +17,13 @@ local sidebar_style = {
         font_bold = font_body_bold,
         color = "f0f4f5",
     },
-    padding = {40, 50, 250, 50},
+    padding = { 40, 50, 8, 50 },
     session_list = {
-        item_bg_img = create_color_resource_hex("2b364c", 1.0),
+        item_bg_img = create_color_resource_hex("700010", 1.0),
         compact = true
     },
     session_brief = {
-        item_bg_img = create_color_resource_hex("2b364c", 1.0)
+        item_bg_img = create_color_resource_hex("700010", 1.0)
     }
 }
 
@@ -46,7 +43,7 @@ local main_style = {
         color = "2b364c",
     },
     player_bg_mask = nil,
-    padding = {40, 50, 20, 50},
+    padding = { 40, 50, 20, 50 },
     info = {
         text_color = "2b364c",
         text_frame = create_color_resource_hex("f0f4f5", 0.9),
@@ -74,7 +71,7 @@ local inset_style = {
         font_bold = font_body_bold,
         color = "ffffff",
     },
-    padding = {70, 50, 70, 50},
+    padding = { 70, 50, 70, 50 },
     session_list = {
         item_bg_img = resource.create_colored_texture(0, 0, 0, 1.0),
         compact = true
