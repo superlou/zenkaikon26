@@ -63,7 +63,7 @@ end
 function Topic:use_background_media(media, mask_filename)
     local filename = string.lower(media.filename)
     local media_is_image = (
-        string_ends_with(filename, ".png") or string_ends_with(filename, ".png")
+        string_ends_with(filename, ".png") or string_ends_with(filename, ".jpg")
     )
     local media_is_video = string_ends_with(filename, ".mp4")
 
