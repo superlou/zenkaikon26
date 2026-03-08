@@ -14,7 +14,7 @@ function Pager:initialize(w, pages)
     self.h = 24
     self.current = 1
     self.pages = pages
-    self.img_w, self.img_h = 24, 24
+    self.img_w, self.img_h = 32, 26
     self.spacing = 100
 
     self.pager_w = self.pages * self.img_w + self.spacing * (self.pages - 1)
@@ -26,7 +26,7 @@ function Pager:initialize(w, pages)
 end
 
 function Pager:draw()
-    for i=1,self.pages do
+    for i = 1, self.pages do
         local x = (i - 1) * self.img_w + (i - 1) * self.spacing
 
         local img = img_page_not_shown
