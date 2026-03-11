@@ -36,7 +36,7 @@ end
 -- https://stackoverflow.com/questions/11669926/is-there-a-lua-equivalent-of-scalas-map-or-cs-select-function
 function map_table(tbl, f)
     local t = {}
-    for k,v in pairs(tbl) do
+    for k, v in pairs(tbl) do
         t[k] = f(v)
     end
     return t
@@ -70,27 +70,27 @@ function string_starts_with(str, start)
 end
 
 function string_ends_with(str, ending)
-    return ending == "" or str:sub(-#ending) == ending
+    return ending == "" or str:sub(- #ending) == ending
 end
 
 function iter_to_table(...)
     local arr = {}
     for v in ... do
-      arr[#arr + 1] = v
+        arr[#arr + 1] = v
     end
     return arr
 end
 
 function dump(o)
     if type(o) == 'table' then
-       local s = '{ '
-       for k,v in pairs(o) do
-          if type(k) ~= 'number' then k = '"'..k..'"' end
-          s = s .. '['..k..'] = ' .. dump(v) .. ','
-       end
-       return s .. '} '
+        local s = '{ '
+        for k, v in pairs(o) do
+            if type(k) ~= 'number' then k = '"' .. k .. '"' end
+            s = s .. '[' .. k .. '] = ' .. dump(v) .. ','
+        end
+        return s .. '} '
     else
-       return tostring(o)
+        return tostring(o)
     end
 end
 

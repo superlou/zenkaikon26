@@ -13,6 +13,7 @@ local json = require "json"
 local TopicPlayer = require "topic_player"
 local tw = require "tween"
 local ServiceIndicator = require "service_indicator"
+local FallingBlossums = require "falling_blossums"
 
 local sidebar_bg = resource.load_image "img_sidebar_bg.png"
 local main_bg = resource.load_image "img_main_bg.png"
@@ -26,6 +27,7 @@ local ticker_height = 116
 local ticker = Ticker:new(0, HEIGHT - ticker_height - 2, WIDTH, ticker_height - 2)
 local clock = Clock:new(200, 96)
 local service_indicator = ServiceIndicator()
+local falling_blossums = FallingBlossums(0, 0, WIDTH, HEIGHT)
 
 local style = require "style"
 local topic_sidebar = TopicPlayer(640, 484, style["sidebar_style"])
@@ -87,4 +89,6 @@ function node.render()
     offset(10, 978, function()
         service_indicator:draw()
     end)
+
+    falling_blossums:draw(dt)
 end
