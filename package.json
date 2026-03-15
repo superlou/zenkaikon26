@@ -1,7 +1,7 @@
 {
-  "name": "zenkaikon26",
+  "name": "zenkaikon26-photoroom",
   "author": "superlou <lousimons@gmail.com>",
-  "desc": "Digital signage for Zenkaikon 2026",
+  "desc": "Digital signage for Zenkaikon 2026 Photoroom",
   "platforms": [
     "pi/epoch-1",
     "pi/epoch-2"

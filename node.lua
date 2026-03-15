@@ -30,9 +30,9 @@ local service_indicator = ServiceIndicator()
 local falling_blossums = FallingBlossums(0, 0, WIDTH, HEIGHT)
 
 local style = require "style"
-local topic_sidebar = TopicPlayer(640, 484, style["sidebar_style"])
+local topic_sidebar = TopicPlayer(640, 964, style["sidebar_style"])
 local topic_main = TopicPlayer(1280, 964, style["main_style"])
-local topic_inset = TopicPlayer(640, 480, style["inset_style"])
+-- local topic_inset = TopicPlayer(640, 480, style["inset_style"])
 
 util.data_mapper {
     ["clock/update"] = function(data)
@@ -50,7 +50,7 @@ json_watch("config.json", function(config)
     ticker:set_msgs_from_config(config)
     topic_sidebar:set_topics_from_config(config["sidebar_topic_player"])
     topic_main:set_topics_from_config(config["main_topic_player"])
-    topic_inset:set_topics_from_config(config["inset_topic_player"])
+    -- topic_inset:set_topics_from_config(config["inset_topic_player"])
 end)
 
 local t = 0
@@ -78,9 +78,9 @@ function node.render()
     ticker:draw()
     draw_image_xywh(ticker_overlay, 0, 964, 1920, 116)
 
-    offset(0, 484, function()
-        topic_inset:draw()
-    end)
+    -- offset(0, 484, function()
+    --     topic_inset:draw()
+    -- end)
 
     offset(1710, 972, function()
         clock:draw()
