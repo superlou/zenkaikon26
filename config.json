@@ -26,11 +26,11 @@
     { "ticker_text_msg": "Last ticker message" }
   ],
   "_debug_datetime": "2025-03-22T18:30:00",
-  "debug_datetime": "2024-08-03T12:20:00",
+  "debug_datetime": "2026-03-21T12:20:00",
   "debug_time_accel": 1.0,
   "guidebook_api_key": "",
   "guidebook_api_base": "https://docburg.com/api/v1.1/",
-  "guidebook_guide_id": "191558",
+  "guidebook_guide_id": "208677",
   "ticker_speed": 2.0,
   "all_day_threshold": 3.9,
   "is_soon_threshold": 1.0,

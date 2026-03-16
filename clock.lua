@@ -58,7 +58,7 @@ function Clock:draw()
 
     local date_r, date_g, date_b = unpack(date_color)
 
-    font:write(x_anchor - date_w - 8, y_anchor + 3,
+    font:write(x_anchor - date_w - 18, y_anchor + 3,
         self.date, sub_h,
         date_r, date_g, date_b, 1)
 end
