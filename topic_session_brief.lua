@@ -169,6 +169,7 @@ function SessionBriefItem:initialize(name, locations,
     self.text_color = { hex2rgb(self.style.text.color) }
     self.font_size = 42
     self.font = self.style.text.font
+    self.font_bold = self.style.text.font_bold
 
     -- Calculations to right align
     self.date_w = 120
@@ -187,9 +188,9 @@ local until_color = { hex2rgb("#2fc480") }
 local opens_color = { hex2rgb("#d9b630") }
 local closed_color = { hex2rgb("#d34848") }
 
-local img_until = resource.load_image("img_until_dark.png")
-local img_closed = resource.load_image("img_ended_dark.png")
-local img_opens = resource.load_image("img_opens_dark.png")
+local img_until = resource.load_image("img_until.png")
+local img_closed = resource.load_image("img_closed.png")
+local img_opens = resource.load_image("img_opens.png")
 local img_none = resource.load_image("img_no_media.png")
 
 function SessionBriefItem:draw()
@@ -213,9 +214,9 @@ function SessionBriefItem:draw()
         status_color = closed_color
     end
 
-    status_img:draw(510, 18, 510 + 82, 18 + 25, self.alpha)
+    status_img:draw(510, 20, 510 + 82, 20 + 25, self.alpha)
     write_centered(
-        self.font, 510 + 41, 60, self.status2, self.font_size * 0.5,
+        self.font_bold, 510 + 41, 52, self.status2, self.font_size * 0.5,
         status_color[1], status_color[2], status_color[3], self.alpha
     )
 
